@@ -1,0 +1,513 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+        <link rel="next" href="explanation/">
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.28">
+    
+    
+      
+        <title>Proyecto Modelo de Ising</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.6543a935.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#modelo-de-ising-cuantico-unidimensional-en-una-grilla-de-n-espines-dinamica-de-muchos-cuerpos" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="." title="Proyecto Modelo de Ising" class="md-header__button md-logo" aria-label="Proyecto Modelo de Ising" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Proyecto Modelo de Ising
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              General
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="." title="Proyecto Modelo de Ising" class="md-nav__button md-logo" aria-label="Proyecto Modelo de Ising" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Proyecto Modelo de Ising
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="." class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    General
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-de-ising" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo de Ising
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    <span class="md-ellipsis">
+      project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project--milestones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Milestones:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="explanation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Desarrollo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="reference/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referencias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#modelo-de-ising" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modelo de Ising
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Overview
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    <span class="md-ellipsis">
+      project
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="project">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#project--milestones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Milestones:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="modelo-de-ising-cuantico-unidimensional-en-una-grilla-de-n-espines-dinamica-de-muchos-cuerpos">Modelo de Ising cuántico unidimensional en una grilla de N espines: Dinámica de muchos cuerpos</h1>
+<p><span class="arithmatex">\(\textbf{Coordinador:}\)</span> Marlon Brenes Navarro</p>
+<p><span class="arithmatex">\(\textbf{Estudiantes:}\)</span></p>
+<ul>
+<li>C02637 Andrés Díaz Pereira </li>
+<li>C24634 Felipe Mata</li>
+<li>C05127 Julyana Mora García </li>
+<li>890465 Patricio Becerra Barrios </li>
+<li>C27118 Sebastián José Salazar Chaves</li>
+</ul>
+<h2 id="modelo-de-ising">Modelo de Ising</h2>
+<p>El modelo de Ising para el estudio de la transición ferromagnética es de gran interés debido a su sencilles y que se puede resolver analíticamente. Su hamiltoniano está dado por:
+\begin{equation}
+\hat{H} = \sum_{i=1}^{N-1} J\hat{\sigma}^z_{i} \hat{\sigma}^z_{i+1} + \sum_{i=1}^N g\hat{\sigma}^x_{i},
+\end{equation}</p>
+<p>El primer término representa la energía de interacción entre los espines contiguos <span class="arithmatex">\(\textit{i}\)</span> y <span class="arithmatex">\(\textit{i+1}\)</span> donde <span class="arithmatex">\(\textit{J}\)</span> es una escala energética que determina la interacción ferromagnética. El segundo término es la energía de interacción entre los momentos magnéticos y un campo magnético externo, <span class="arithmatex">\(\textit{g}\)</span> es el parámetro energético del campo trasversal. Los términos <span class="arithmatex">\(\hat{\sigma}^\alpha_{i}\)</span> donde <span class="arithmatex">\(\alpha = x,y,z\)</span> son las matrices de Pauli para el espín <span class="arithmatex">\(\textit{i}\)</span></p>
+<p>La construcción del Hamiltoniano implica crear una matriz hermítica de dimensión <span class="arithmatex">\(2^N\)</span> que describe el sistema. Para ello se utilizan productos tensoriales de cada uno de los espacios de Hilbert de la forma:
+\begin{gather}
+\
+\hat{\sigma}^\alpha_{1} = \hat{\sigma}^z \otimes \mathbb{1} \otimes \mathbb{1} \otimes \cdots \otimes  \mathbb{1} \otimes \mathbb{1} \otimes \mathbb{1}, \
+\
+\
+\hat{\sigma}^\alpha_{N-1} = \mathbb{1} \otimes \mathbb{1} \otimes \mathbb{1} \otimes \cdots \otimes  \mathbb{1} \otimes \hat{\sigma}^z \otimes \mathbb{1}, \
+\
+\hat{\sigma}^\alpha_{N} = \mathbb{1} \otimes \mathbb{1} \otimes \mathbb{1} \otimes \cdots \otimes  \mathbb{1} \otimes \mathbb{1} \otimes \hat{\sigma}^z \
+\
+\end{gather} </p>
+<p>realizando así <span class="arithmatex">\(N-1\)</span> productos tensoriales para calcular cada <span class="arithmatex">\(\hat{\sigma}^\alpha_{i}\)</span> </p>
+<p>La dinámica de un estado puro se describe mediante la <span class="arithmatex">\(\textit{ecuación de Schrödinger}\)</span>, la cuál está dada por:
+\begin{equation}
+\frac{d{\psi}(t)}{dt} = -{\rm{i}} \hat{H}|\psi(t) \rangle,
+\end{equation}</p>
+<p>cuya solución analítica está dada por:
+\begin{equation}
+\psi(t) = e^{-{\rm{i}}\hat{H}(t-t_{0})} |\psi(t=t_{0}) \rangle,
+\end{equation}</p>
+<p>Por lo tanto, la solución involucra resolver de manera numérica la ecuación diferencial de Schrödinger o evaluar de alguna forma la exponencial de la matriz.</p>
+<h2 id="project-overview">Project Overview</h2>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="project"></a>
+    <div class="doc doc-contents first">
+
+      <p>Objetivo: Evaluar la dinámica del modelo de Ising empezando en un estado inicial.</p>
+<h4 id="project--milestones">Milestones:</h4>
+<pre><code>- Construir el Hamiltoniano para una grilla de N espines
+- Resolver numéricamente la ecuación de Schrödinger
+- Evaluar la exponencial de la matriz
+- Evaluar cuál de las dos metodologías es mejor implementar para la solución numérica
+- Paralelizar el algoritmo y evaluar su aceleración
+</code></pre>
+<p>Para este proyecto se hizo uso del módulo:</p>
+<ul>
+<li><code>ising</code>: Contiene las funciones utilizadas.</li>
+</ul>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": ".", "features": [], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
