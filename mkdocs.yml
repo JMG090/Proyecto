@@ -20,5 +20,6 @@ plugins:
 nav:
   - General: index.md
   - Desarrollo: explanation.md
+  - Resultados: result.md
   - Referencias: reference.md
 
