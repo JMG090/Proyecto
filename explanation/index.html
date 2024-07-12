@@ -12,7 +12,7 @@
         <link rel="prev" href="..">
       
       
-        <link rel="next" href="../reference/">
+        <link rel="next" href="../result/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -253,10 +253,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#paralelizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelización
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../result/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resultados
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -341,6 +370,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#paralelizacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paralelización
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -366,10 +404,16 @@
 <p>Una vez obtenidas las matrices de espín se evalúan ambos términos del hamiltoniano haciendo ambas sumatorias con el cuidado de evaluar condiciones periódicas donde el último espín y el primer espín estén conectados. De la función se obtienen la matriz y el arreglo de las matrices de espín en la dirección <span class="arithmatex">\(z\)</span> que se utilizará más adelante</p>
 <h3 id="solucion-numerica-de-schrodinger">Solución numérica de Schrodinger</h3>
 <p>Para obtener la solución numéricamente de la ecuación de Schrodinger se utilizó el método <span class="arithmatex">\(\textit{Runge Kutta}\)</span> de <span class="arithmatex">\(4^{to}\)</span> orden. Primero se definió un estado inicial, luego una función que devuelve la ecuación de Schrodinger y una función para el método <span class="arithmatex">\(RK4\)</span>. Se llamó a la función <code>hamiltonian</code>, se estableció una grilla temporal y el paso de tiempo de esta. En un ciclo <code>for</code> se obtiene el valor de expectación del espín para el estado inicial y se guarda en un arrelo, aplicando <span class="arithmatex">\(RK4\)</span> se obtiene el siguiente estado que pasa a ser el inicial para calcular de nuevo el valor de expectación y sigue de esta forma hasta terminar el ciclo. Para visualizar los resultados se graficaron los valores de expectación de cada espín en función del tiempo.</p>
+<p>Para el caso de dos espines se obtuvo el siguiente gráfico:</p>
+<p><img alt="" src="../imag/RK4.png" /></p>
 <h3 id="solucion-analitica-con-la-exponencial">Solución analítica con la exponencial</h3>
 <p>Con una función de <code>numpy</code> se diagonaliza el Hamiltoniano, luego se cambia de base la polarización en <span class="arithmatex">\(z\)</span> multiplicando cada matriz por la matriz de transformación a la izquierda y la transpuesta de la matriz de transformación por la derecha, y la base del estado inicial multiplicando la matriz de trasnformación por la derecha.</p>
 <p>Se define una grilla temporal y un arreglo para los valores de expectación, se crea un sistema de ciclos <code>for</code> igual que el anterior con la diferencia que en lugar de llamar a <span class="arithmatex">\(RK4\)</span> para calcular el siguiente estado se crea un propagador que será la exponencial del <span class="arithmatex">\(eigen valor\)</span> obtenido de la diagonalización del Hamiltoniano y se aplica este propagador al estado inicial, el nuevo estado pasa a ser el inicial continúa el cálculo de valores de expectación.</p>
-<p>De nuevo se puede ver el resultado graficando los valores de expectación en función del tiempo. </p>
+<p>De nuevo se puede ver el resultado graficando los valores de expectación en función del tiempo obteniendo el gráfico: </p>
+<p><img alt="" src="../imag/Exponential.png" /></p>
+<h3 id="paralelizacion">Paralelización</h3>
+<p>La paralelización del código Python se realizó utilizando la Intel Math Kernel Library (MKL) que consiste en una librería de funciones y rutinas optimizadas sobre matemática aplicada. MKL permite la optimización en algunos procesos llevados en Python pues las librerias mencionadas están escritas bajo el paradigma de C/C++ siendo más flexibles en cuanto a la utilización y manejo de hilos permitiendo el desarrollo de rutinas optimizadas que puedan ser implementadas en Python. Para este caso la incorporación se realiza a la biblioteca Numpy.</p>
+<p>Para la paralelización se separaron ambos métodos (Runge-Kutta y Exponencial) y cambiando el número de hilos con una variable de ambiente se evalúo la aceleración de la optimización para ambos, además para el método Exponencial también se realizó una separación entre la optimización de la diagonalización del Hamiltoniano y la optimización sumandole la evolución en el tiempo.</p>
 
 
 
